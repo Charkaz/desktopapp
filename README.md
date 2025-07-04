@@ -2,7 +2,7 @@
 
 Bu proje, basit bir ASP.NET Web API uygulamasıdır ve CI/CD pipeline'ı ile Jenkins ve GitHub Actions entegrasyonu içerir.
 
-## Özellikleri
+## Özellikleridabhsvda
 
 - ✅ ASP.NET Core 8.0 Web API
 - ✅ Swagger/OpenAPI dokümantasyonu
