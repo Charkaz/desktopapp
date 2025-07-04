@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - JENKINS_OPTS=--httpPort=8080
+    networks:
+      - jenkins
+    restart: unless-stopped
+
+  docker-in-docker:
+    image: docker:dind
+    container_name: docker-dind
+    privileged: true
+    ports:
+      - "2376:2376"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - docker_data:/var/lib/docker
+    environment:
+      - DOCKER_TLS_CERTDIR=/certs
+    networks:
+      - jenkins
+    restart: unless-stopped
+
+volumes:
+  jenkins_home:
+  docker_data:
+
+networks:
+  jenkins:
+    driver: bridge

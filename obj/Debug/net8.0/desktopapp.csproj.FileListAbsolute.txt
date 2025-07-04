@@ -1,0 +1,7 @@
+C:\Users\Chark\OneDrive\Desktop\desktopapp\obj\Debug\net8.0\desktopapp.csproj.AssemblyReference.cache
+C:\Users\Chark\OneDrive\Desktop\desktopapp\obj\Debug\net8.0\desktopapp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Chark\OneDrive\Desktop\desktopapp\obj\Debug\net8.0\desktopapp.AssemblyInfoInputs.cache
+C:\Users\Chark\OneDrive\Desktop\desktopapp\obj\Debug\net8.0\desktopapp.AssemblyInfo.cs
+C:\Users\Chark\OneDrive\Desktop\desktopapp\obj\Debug\net8.0\desktopapp.csproj.CoreCompileInputs.cache
+C:\Users\Chark\OneDrive\Desktop\desktopapp\obj\Debug\net8.0\desktopapp.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Chark\OneDrive\Desktop\desktopapp\obj\Debug\net8.0\desktopapp.MvcApplicationPartsAssemblyInfo.cache

@@ -1,0 +1,13 @@
+bin/
+obj/
+.vs/
+*.user
+*.suo
+.vscode/
+.idea/
+*.log
+appsettings.Development.json
+Tests/
+*.Tests/
+**/*Test*.cs
+**/*Tests*.cs

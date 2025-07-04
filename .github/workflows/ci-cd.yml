@@ -1,0 +1,57 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+      
+    - name: Test
+      run: dotnet test --no-build --configuration Release --verbosity normal
+      
+    - name: Publish
+      run: dotnet publish --no-build --configuration Release --output ./publish
+      
+    - name: Build Docker image
+      run: |
+        docker build -t desktopapp:${{ github.sha }} .
+        docker tag desktopapp:${{ github.sha }} desktopapp:latest
+        
+    - name: Run Docker container (test)
+      run: |
+        docker run -d --name test-container -p 8080:80 desktopapp:latest
+        sleep 10
+        curl -f http://localhost:8080/api/hello || exit 1
+        docker stop test-container
+        docker rm test-container
+        
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Deploy to production
+      run: |
+        echo "Deployment step - Bu aşamada production sunucuya deploy edilir"
+        echo "Docker image: desktopapp:${{ github.sha }}"
